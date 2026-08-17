@@ -54,7 +54,7 @@ def head(title, description, prefix="", canonical=""):
 """
 
 
-FOOT_SCRIPT = "<script src=\"{prefix}js/main.js\"></script>\n<script src=\"{prefix}js/charts.js\"></script>\n</body>\n</html>\n"
+FOOT_SCRIPT = "<script src=\"{prefix}js/main.js?v=2\"></script>\n<script src=\"{prefix}js/charts.js?v=2\"></script>\n</body>\n</html>\n"
 
 
 def header(prefix="", active=""):
