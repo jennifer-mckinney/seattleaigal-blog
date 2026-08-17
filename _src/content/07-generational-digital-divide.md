@@ -66,7 +66,7 @@ In February 2024, a finance worker at British engineering firm Arup transferred 
 
 ### Case 2: The Pelosi Precedent (Boomer Vulnerability)
 
-The manipulated video of Nancy Pelosi that garnered 2.5 million Facebook views in 2019 wasn't technically a deepfake but presaged the crisis. Paris and Donovan's (2019) influential report distinguished between "deepfakes" and "cheap fakes," placing the Pelosi video in the latter category while noting its similar societal impact ([Data & Society](https://datasociety.net/library/deepfakes-and-cheap-fakes/)). Analysis of viewer demographics revealed 78% were over 55, with comment analysis showing high confidence in the video's authenticity. One 68-year-old viewer shared it 47 times with the caption "Finally, the truth comes out." When informed of the manipulation, she responded: "How can we know what's real anymore?"
+The manipulated video of Nancy Pelosi that garnered 2.5 million Facebook views in 2019 wasn't technically a deepfake but presaged the crisis. Paris and Donovan's (2019) influential report distinguished between "deepfakes" and "cheap fakes," placing the Pelosi video in the latter category while noting its similar societal impact ([Data & Society](https://datasociety.net/research-library/deepfakes-and-cheap-fakes-the-manipulation-of-audio-and-visual-evidence/)). Analysis of viewer demographics revealed 78% were over 55, with comment analysis showing high confidence in the video's authenticity. One 68-year-old viewer shared it 47 times with the caption "Finally, the truth comes out." When informed of the manipulation, she responded: "How can we know what's real anymore?"
 
 ### Case 3: The Instagram Influence (Gen Z Normalization)
 
@@ -196,7 +196,7 @@ Our analysis reveals distinct vulnerability patterns across generational cohorts
 
 **Generation X** faces acute professional vulnerabilities. As peak career professionals, they're disproportionately targeted for business email compromise using voice cloning. The $25 million Arup CFO deepfake fraud exemplifies their exposure ([Sandoval et al., Crime Science](https://doi.org/10.1186/s40163-024-00239-1)). Yet only 25% of company leaders show familiarity with deepfake technology.
 
-**Baby Boomers and older** demonstrate highest vulnerability with lowest awareness. The Nancy Pelosi deepfake reaching 2.5 million Facebook views illustrates their susceptibility to political manipulation ([Data & Society](https://datasociety.net/library/deepfakes-and-cheap-fakes/)). With recent data showing that 77% of deepfake scam victims lose money ([Security.org](https://www.security.org/resources/deepfake-statistics/)), they represent ideal targets for financial fraud.
+**Baby Boomers and older** demonstrate highest vulnerability with lowest awareness. The Nancy Pelosi deepfake reaching 2.5 million Facebook views illustrates their susceptibility to political manipulation ([Data & Society](https://datasociety.net/research-library/deepfakes-and-cheap-fakes-the-manipulation-of-audio-and-visual-evidence/)). With recent data showing that 77% of deepfake scam victims lose money ([Security.org](https://www.security.org/resources/deepfake-statistics/)), they represent ideal targets for financial fraud.
 
 **Figure 2: Generational Vulnerability Matrix**
 
@@ -579,7 +579,7 @@ The deepfake crisis isn't just about technology. It's about what remains essenti
 - [Sprout Social](https://sproutsocial.com/insights/new-social-media-demographics/)
 - [Pew Research Center, Teens and Technology](https://www.pewresearch.org/internet/2024/12/12/teens-social-media-and-technology-2024/)
 - [Sandoval et al., Crime Science](https://doi.org/10.1186/s40163-024-00239-1)
-- [Data & Society](https://datasociety.net/library/deepfakes-and-cheap-fakes/)
+- [Data & Society](https://datasociety.net/research-library/deepfakes-and-cheap-fakes-the-manipulation-of-audio-and-visual-evidence/)
 - [Hancock & Bailenson, Cyberpsychology](https://doi.org/10.1089/cyber.2021.29208.jth)
 - [Fortune](https://fortune.com/2025/04/11/job-applicants-deepfake-ai-imposters-how-to-bust-imposters-hiring-managers-hr-leaders/)
 - [CNBC](https://www.cnbc.com/2025/04/08/fake-job-seekers-use-ai-to-interview-for-remote-jobs-tech-ceos-say.html)
