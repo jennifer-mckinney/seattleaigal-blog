@@ -96,6 +96,36 @@ ESSAYS = [
     #     "dek": "A generational fault line is forming around synthetic media: one cohort adapts to a post-authentic internet while another retreats into smaller, verified circles. What that split means for platform trust, and how long the window for intervention stays open.",
     #     "image": "img/essay-deepfakes.png",
     # },
+    {
+        "slug": "the-call-that-sounded-like-his-son",
+        "file": "08a-the-call-that-sounded-like-his-son.md",
+        "category": "AI Ethics",
+        "secondary": "Compliance",
+        "type": "Essay",
+        "date": "2026-08-16",
+        "dek": "A lawyer who evaluates evidence for a living believed a voice that was never there. The federal government now counts cases like his. It counts only the ones the victim figured out.",
+        "image": "img/essay-truth-one.png",
+    },
+    {
+        "slug": "the-selfies-that-did-not-match",
+        "file": "08b-the-selfies-that-did-not-match.md",
+        "category": "AI Ethics",
+        "secondary": "Labor",
+        "type": "Essay",
+        "date": "2026-08-16",
+        "dek": "Proving you are a real person used to be free and assumed. It became a task, then a product, and the people carrying the most of it have the least room to refuse.",
+        "image": "img/essay-truth-two.png",
+    },
+    {
+        "slug": "nobody-has-won-with-it-yet",
+        "file": "08c-nobody-has-won-with-it-yet.md",
+        "category": "Compliance",
+        "secondary": "AI Ethics",
+        "type": "Essay",
+        "date": "2026-08-16",
+        "dek": "The fear was that a fake would be believed. The sharper risk is that something real stops counting as proof. American courts have now heard that argument several times. It has lost every time, and the reason it lost is not reassuring.",
+        "image": "img/essay-truth-three.png",
+    },
 ]
 
 CAT_CLASS = {

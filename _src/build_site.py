@@ -154,6 +154,9 @@ TITLES = {
     "constraints-in-orbit-heat": "The Constraints We Put in Orbit, Part I: The Heat Problem We Keep Calling a Bandwidth Problem",
     "constraints-in-orbit-jurisdiction": "The Constraints We Put in Orbit, Part II: Sovereignty Doesn't Subtract in Orbit, It Stacks",
     "constraints-in-orbit-governance": "The Constraints We Put in Orbit, Part III: The Governance Gap Is Filled by Discretion",
+    "the-call-that-sounded-like-his-son": "When the Truth Becomes Fiction, Part I: The Call That Sounded Like His Son",
+    "the-selfies-that-did-not-match": "When the Truth Becomes Fiction, Part II: The Selfies That Did Not Match",
+    "nobody-has-won-with-it-yet": "When the Truth Becomes Fiction, Part III: Nobody Has Won With It Yet",
     "generational-digital-divide": "The Generational Digital Divide: AI-Generated Deepfakes and Their Differential Impact on Social Media Platform Trust Across Age Cohorts",
 }
 

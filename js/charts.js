@@ -623,7 +623,304 @@
     table.style.display = 'none';
   }
 
+
+  // ── Essay 08a: When the Truth Becomes Fiction, Part I ─────────────────────
+
+  function initSchildhornCharts() {
+    // Figure: known-AI complaints against the annual total
+    var tables = document.querySelectorAll('.article-body table');
+    var fig1 = null, fig2 = null, ledger = null;
+    for (var i = 0; i < tables.length; i++) {
+      var th = tables[i].querySelector('th');
+      if (!th) continue;
+      var key = th.textContent.trim().toLowerCase();
+      if (key === 'complaint category') fig1 = tables[i];
+      else if (key === 'assessment year') fig2 = tables[i];
+      else if (key === 'provenance') ledger = tables[i];
+    }
+
+    if (fig1) {
+      injectChart(fig1, function (canvas, theme) {
+        var t = PALETTE[theme];
+        return new Chart(canvas, {
+          type: 'bar',
+          data: {
+            labels: ['Known AI involvement', 'No AI identified'],
+            datasets: [{
+              label: 'Complaints filed, 2025',
+              data: [22364, 977636],
+              backgroundColor: [t.ethics, t.divider],
+              borderColor: [t.ethics, t.textFaint],
+              borderWidth: 1,
+            }],
+          },
+          options: Object.assign({}, baseChartOptions(theme), {
+            indexAxis: 'y',
+            plugins: Object.assign({}, baseChartOptions(theme).plugins, { legend: { display: false } }),
+            scales: {
+              x: { ticks: { color: t.textMuted }, grid: { color: t.grid } },
+              y: { ticks: { color: t.textMuted }, grid: { display: false } },
+            },
+          }),
+        });
+      });
+    }
+
+    if (fig2) {
+      injectChart(fig2, function (canvas, theme) {
+        var t = PALETTE[theme];
+        return new Chart(canvas, {
+          type: 'bar',
+          data: {
+            labels: ['2023 assessment', '2025 assessment'],
+            datasets: [
+              { label: 'Low estimate', data: [18, 88.3], backgroundColor: t.compliance },
+              { label: 'High estimate', data: [37, 114.1], backgroundColor: t.ethics },
+            ],
+          },
+          options: Object.assign({}, baseChartOptions(theme), {
+            scales: {
+              x: { ticks: { color: t.textMuted }, grid: { display: false } },
+              y: {
+                beginAtZero: true,
+                ticks: { color: t.textMuted, callback: function (v) { return '$' + v + 'B'; } },
+                grid: { color: t.grid },
+              },
+            },
+          }),
+        });
+      });
+    }
+
+    if (ledger) {
+      var rows = ledger.querySelectorAll('tbody tr');
+      var grid = document.createElement('div');
+      grid.className = 'visual-card-grid';
+      grid.setAttribute('role', 'list');
+
+      rows.forEach(function (row) {
+        var cells = row.querySelectorAll('td');
+        if (cells.length < 3) return;
+        var disposition = cells[1].textContent.trim().toLowerCase();
+        var color = disposition === 'kept' ? 'var(--color-compliance)' : 'var(--color-ethics)';
+
+        var card = document.createElement('div');
+        card.className = 'visual-card';
+        card.setAttribute('role', 'listitem');
+        card.style.borderLeftColor = color;
+
+        var titleEl = document.createElement('div');
+        titleEl.className = 'visual-card__title';
+        titleEl.style.color = color;
+        titleEl.textContent = cells[0].textContent.trim();
+
+        var subtitleEl = document.createElement('div');
+        subtitleEl.className = 'visual-card__subtitle';
+        subtitleEl.textContent = cells[1].textContent.trim();
+
+        var bodyEl = document.createElement('div');
+        bodyEl.className = 'visual-card__body';
+        bodyEl.textContent = cells[2].textContent.trim();
+
+        card.appendChild(titleEl);
+        card.appendChild(subtitleEl);
+        card.appendChild(bodyEl);
+        grid.appendChild(card);
+      });
+
+      ledger.parentNode.insertBefore(grid, ledger);
+      ledger.style.display = 'none';
+    }
+  }
+
+
+  // ── Generic table-to-card-grid helper ────────────────────────────────────
+  // cols: [titleIndex, subtitleIndex or -1, bodyIndex]; colorBy maps the text
+  // of a chosen column onto a category token.
+  function cardsFromTable(table, cols, colorBy) {
+    if (!table) return;
+    var rows = table.querySelectorAll('tbody tr');
+    var grid = document.createElement('div');
+    grid.className = 'visual-card-grid';
+    grid.setAttribute('role', 'list');
+
+    rows.forEach(function (row) {
+      var cells = row.querySelectorAll('td');
+      if (!cells.length) return;
+
+      function text(i) {
+        return i >= 0 && cells[i] ? cells[i].textContent.trim() : '';
+      }
+
+      var color = colorBy ? colorBy(text(colorBy.column)) : 'var(--color-primary)';
+
+      var card = document.createElement('div');
+      card.className = 'visual-card';
+      card.setAttribute('role', 'listitem');
+      card.style.borderLeftColor = color;
+
+      var titleEl = document.createElement('div');
+      titleEl.className = 'visual-card__title';
+      titleEl.style.color = color;
+      titleEl.textContent = text(cols[0]);
+      card.appendChild(titleEl);
+
+      if (cols[1] >= 0) {
+        var subEl = document.createElement('div');
+        subEl.className = 'visual-card__subtitle';
+        subEl.textContent = text(cols[1]);
+        card.appendChild(subEl);
+      }
+
+      var bodyEl = document.createElement('div');
+      bodyEl.className = 'visual-card__body';
+      bodyEl.textContent = text(cols[2]);
+      card.appendChild(bodyEl);
+
+      grid.appendChild(card);
+    });
+
+    table.parentNode.insertBefore(grid, table);
+    table.style.display = 'none';
+  }
+
+  function tableByHeader(exact) {
+    var found = null;
+    document.querySelectorAll('.article-body table').forEach(function (tbl) {
+      var th = tbl.querySelector('th');
+      if (th && th.textContent.trim().toLowerCase() === exact) found = tbl;
+    });
+    return found;
+  }
+
+  // ── Essay 08b: When the Truth Becomes Fiction, Part II ────────────────────
+
+  function initVerificationCharts() {
+    var revocable = function (v) {
+      return v.toLowerCase() === 'yes' ? 'var(--color-compliance)' : 'var(--color-ethics)';
+    };
+    revocable.column = 1;
+    cardsFromTable(tableByHeader('credential'), [0, 1, 2], revocable);
+
+    var records = function () { return 'var(--color-architecture)'; };
+    records.column = 0;
+    cardsFromTable(tableByHeader('public record'), [0, 1, 2], records);
+
+    var detectors = tableByHeader('detector result');
+    if (detectors) {
+      injectChart(detectors, function (canvas, theme) {
+        var t = PALETTE[theme];
+        return new Chart(canvas, {
+          type: 'bar',
+          data: {
+            labels: ['Native writers', 'Non-native, average', 'Non-native, any detector'],
+            datasets: [{
+              label: 'Human-written essays falsely flagged (%)',
+              data: [0, 61.3, 97.8],
+              backgroundColor: [t.divider, t.ethics, t.ethics],
+              borderColor: [t.textFaint, t.ethics, t.ethics],
+              borderWidth: 1,
+            }],
+          },
+          options: Object.assign({}, baseChartOptions(theme), {
+            plugins: Object.assign({}, baseChartOptions(theme).plugins, { legend: { display: false } }),
+            scales: {
+              x: { ticks: { color: t.textMuted }, grid: { display: false } },
+              y: {
+                beginAtZero: true, max: 100,
+                ticks: { color: t.textMuted, callback: function (v) { return v + '%'; } },
+                grid: { color: t.grid },
+              },
+            },
+          }),
+        });
+      });
+    }
+
+    var estimates = tableByHeader('estimate source');
+    if (estimates) {
+      injectChart(estimates, function (canvas, theme) {
+        var t = PALETTE[theme];
+        return new Chart(canvas, {
+          type: 'bar',
+          data: {
+            labels: ['Vendor chief executive', 'Labor Dept Inspector General'],
+            datasets: [{
+              label: 'Pandemic unemployment fraud, stated',
+              data: [400, 45.7],
+              backgroundColor: [t.ethics, t.compliance],
+            }],
+          },
+          options: Object.assign({}, baseChartOptions(theme), {
+            indexAxis: 'y',
+            plugins: Object.assign({}, baseChartOptions(theme).plugins, { legend: { display: false } }),
+            scales: {
+              x: {
+                beginAtZero: true,
+                ticks: { color: t.textMuted, callback: function (v) { return '$' + v + 'B'; } },
+                grid: { color: t.grid },
+              },
+              y: { ticks: { color: t.textMuted }, grid: { display: false } },
+            },
+          }),
+        });
+      });
+    }
+  }
+
+  // ── Essay 08c: When the Truth Becomes Fiction, Part III ───────────────────
+
+  function initDocketCharts() {
+    var outcome = function (v) {
+      var k = v.toLowerCase();
+      if (k === 'succeeded') return 'var(--color-labor)';
+      if (k === 'backfired' || k === 'excluded') return 'var(--color-architecture)';
+      return 'var(--color-ethics)';
+    };
+    outcome.column = 1;
+    cardsFromTable(tableByHeader('case'), [0, 1, 2], outcome);
+
+    var reach = function (v) {
+      return v.toLowerCase() === 'yes' ? 'var(--color-compliance)' : 'var(--color-ethics)';
+    };
+    reach.column = 1;
+    cardsFromTable(tableByHeader('rule 707'), [0, 1, 2], reach);
+
+    var denial = tableByHeader('denial target');
+    if (denial) {
+      injectChart(denial, function (canvas, theme) {
+        var t = PALETTE[theme];
+        return new Chart(canvas, {
+          type: 'bar',
+          data: {
+            labels: ['Text, claiming uncertainty', 'Text, rallying supporters', 'Video evidence'],
+            datasets: [{
+              label: 'Effect size (SD)',
+              data: [0.17, 0.21, 0],
+              backgroundColor: [t.ethics, t.ethics, t.divider],
+              borderColor: [t.ethics, t.ethics, t.textFaint],
+              borderWidth: 1,
+            }],
+          },
+          options: Object.assign({}, baseChartOptions(theme), {
+            plugins: Object.assign({}, baseChartOptions(theme).plugins, { legend: { display: false } }),
+            scales: {
+              x: { ticks: { color: t.textMuted }, grid: { display: false } },
+              y: {
+                beginAtZero: true, max: 0.3,
+                ticks: { color: t.textMuted, stepSize: 0.1 },
+                grid: { color: t.grid },
+              },
+            },
+          }),
+        });
+      });
+    }
+  }
+
   // ── Wire up new essay handlers in the init() function ────────────────────
+
+
 
   // ── Run on DOMContentLoaded ───────────────────────────────────────────────
 
@@ -637,6 +934,12 @@
       initPrinciplesCards();
     } else if (slug === 'compliance-by-construction') {
       initRiskCards();
+    } else if (slug === 'the-call-that-sounded-like-his-son') {
+      initSchildhornCharts();
+    } else if (slug === 'the-selfies-that-did-not-match') {
+      initVerificationCharts();
+    } else if (slug === 'nobody-has-won-with-it-yet') {
+      initDocketCharts();
     }
   }
 

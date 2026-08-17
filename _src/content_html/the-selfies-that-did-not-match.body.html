@@ -1,0 +1,122 @@
+<p>Pa Edrissa Manjang delivered food in Oxfordshire. To keep working he had to photograph his own face and send it in, on demand, so a system could compare the picture against the one on file. The system kept deciding the two faces were not the same face. In 2021 the account was shut off for good.</p>
+<p>He is Black. The software checking him was built on a commercial facial recognition service.</p>
+<p>Manjang filed claims in an employment tribunal in October 2021, alleging indirect race discrimination, harassment and victimisation. His former employer applied to have the claims struck out. The tribunal refused in May 2022 (<a href="https://assets.publishing.service.gov.uk/media/62dab66b8fa8f5649dbef494/Mr_P_E_Manjang_-v-_Uber_Eats_UK_Ltd___Others_-_3206212_2021_-_Preliminary_Judgment.pdf">preliminary judgment</a>) and confirmed that refusal on reconsideration in September 2023 (<a href="https://assets.publishing.service.gov.uk/media/6548f8eb59b9f5001385a2db/Mr_P_A_Edrissa_Manjang_-v-_Uber_Eats_UK_Ltd___Others_-_3206212_2021_-_Recon_Judgment.pdf">reconsideration judgment</a>). Britain's Equality and Human Rights Commission funded the case, alongside a couriers' union. In March 2024 the company settled (<a href="https://www.equalityhumanrights.com/news/news/uber-eats-courier-wins-payout-help-equality-watchdog-after-facing-problematic-ai-checks">EHRC statement, 26 March 2024</a>).</p>
+<p>The terms are confidential. No tribunal ever ruled on the merits. What is on the public record is a statutory equality regulator deciding the case was worth funding, a tribunal twice declining to throw it out, and a settlement.</p>
+<p>A man who had done nothing wrong spent two and a half years, and needed a national regulator, to establish something that had never before required establishing. That he was who he said he was.</p>
+<h2>How the burden of proof reversed</h2>
+<p>For most of the history of dealing with strangers, authenticity was the default assumption and fakery was the thing that required proof. A forged document had to be exposed. An impostor had to be caught. The burden sat with whoever alleged the fake.</p>
+<p>That has reversed, quietly, without anybody voting on it. Now you arrive carrying the burden. You are asked to demonstrate you are a person, repeatedly, to systems that will not explain themselves, and the work of demonstrating it is unpaid and not optional.</p>
+<p>Nobody was asked whether they wanted the default flipped. It flipped, and then it was monetised.</p>
+<p>A password is a secret you chose. If it leaks, you choose a different one and the old one becomes worthless. That property is the entire basis of password security. It fails safely.</p>
+<table>
+<thead>
+<tr>
+<th>Credential</th>
+<th>Revocable</th>
+<th>What that means in practice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A password</td>
+<td>Yes</td>
+<td>You chose it, you can change it, and a leaked one becomes worthless the moment you replace it.</td>
+</tr>
+<tr>
+<td>A face</td>
+<td>No</td>
+<td>You did not choose it, you cannot change it, and a leaked one stays valid for as long as you have the face.</td>
+</tr>
+</tbody>
+</table>
+<p>A face does not have that property. Neither does a fingerprint or an iris. When biometric data leaks from a vendor's system, and it has, there is no reissue. The credential is your body and it is the same body tomorrow. Failing safely is what makes a password worth using, which is why a breach at a verification vendor is permanent in a way a password breach is not.</p>
+<h2>When neutral systems are not neutral</h2>
+<p>The argument for automated verification is that it is neutral. It applies the same test to everyone. Whether it performs the same for everyone is a different question, and it has a measurable answer.</p>
+<p>In July 2023 the journal <em>Patterns</em>, published by Cell Press, ran a peer-reviewed study of AI text detectors by Liang, Yuksekgonul, Mao, Wu and Zou. The detectors were run against essays by native English speakers and essays by non-native speakers (<a href="https://doi.org/10.1016/j.patter.2023.100779">Liang et al., Patterns 4(7)</a>).</p>
+<table>
+<thead>
+<tr>
+<th>Detector result</th>
+<th>Share of human-written essays affected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Native English writers falsely flagged</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Non-native writers falsely flagged, average across detectors</td>
+<td>61.3</td>
+</tr>
+<tr>
+<td>Non-native writers flagged by at least one detector</td>
+<td>97.8</td>
+</tr>
+</tbody>
+</table>
+<p>Every essay tested was written by a human. Roughly one in five TOEFL essays was misflagged unanimously by all seven detectors examined.</p>
+<p>The detectors were not measuring whether a machine wrote the text. They were reacting to a narrower vocabulary and simpler sentence construction, which is what writing in a second language often looks like.</p>
+<p>The consequence lands on students who already had the least margin. Several universities have since turned their detectors off.</p>
+<p>Orion Newby, a first-year student at Adelphi University who is autistic, was flagged by a detector for an essay he wrote. He ran the same text through two other detectors, which reported human authorship. The university ordered him into a plagiarism workshop and told him he could not appeal. In February 2026 a court found the finding against him was without merit (<a href="https://www.insidehighered.com/news/quick-takes/2026/02/11/adelphi-student-wins-ai-plagiarism-lawsuit">Inside Higher Ed, February 2026</a>).</p>
+<h2>What the procurement record shows instead of market estimates</h2>
+<p>Market research on the identity verification sector is produced by firms that sell reports to the companies in it. Those figures are not usable here. What is usable is the public financial record: what specific agencies actually contracted to pay, filed in systems where the numbers carry a contract number.</p>
+<table>
+<thead>
+<tr>
+<th>Public record</th>
+<th>Figure</th>
+<th>What it covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Treasury blanket purchase agreement</td>
+<td>$1.03B</td>
+<td>Ceiling value for identity and access management including facial recognition. Award 2032L226A00006, ordering period running to December 2030, filed on USAspending.gov.</td>
+</tr>
+<tr>
+<td>Congressional oversight finding</td>
+<td>$45M</td>
+<td>Received across at least 25 state agencies for identity verification on pandemic unemployment programmes. Released November 2022.</td>
+</tr>
+<tr>
+<td>GAO report GAO-25-107273</td>
+<td>150M+</td>
+<td>Times users accessed applications requiring the highest identity assurance tier between 2021 and 2024, with the vendor as sole provider to the tax authority. Published 11 June 2025.</td>
+</tr>
+</tbody>
+</table>
+<p>These are procurement records and oversight findings, not market estimates. The GAO report separately found the agency had set no measurable performance goals for the programme and had not documented the vendor's use of AI in its required inventory.</p>
+<p>The same oversight review found that the vendor had directed between 10 and 15 percent of benefit applicants to prove their identity by video chat with staff, because the automated face match had not verified them. One in seven or eight people, waiting in a queue to be looked at by a human, because the machine could not tell they were themselves.</p>
+<p>That review also compared the company's public claim about fraudulent unemployment claims against the Department of Labor Inspector General's assessment (<a href="https://oversightdemocrats.house.gov/news/press-releases/chairs-maloney-clyburn-release-evidence-facial-recognition-company-idme">House Oversight finding</a>).</p>
+<table>
+<thead>
+<tr>
+<th>Estimate source</th>
+<th>Pandemic unemployment fraud (USD bn)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stated by the verification vendor's chief executive</td>
+<td>400</td>
+</tr>
+<tr>
+<td>Assessed by the Labor Department Inspector General</td>
+<td>45.7</td>
+</tr>
+</tbody>
+</table>
+<p>Both figures describe the same problem in the same period. The larger one was stated in June 2021 by the head of a company selling the remedy.</p>
+<p>The estimate of the problem was produced by the party selling the solution. It ran roughly an order of magnitude above the government's own assessment. It circulated anyway.</p>
+<h2>Who is writing the standards for authentic content</h2>
+<p>There is an international body working on standards for multimedia authenticity. Watermarking, provenance, deepfake detection. It is convened by the International Telecommunication Union together with the International Electrotechnical Commission and the International Organization for Standardization, which is to say it sits inside the UN system (<a href="https://aiforgood.itu.int/multimedia-authenticity/">AI and Multimedia Authenticity Standards Collaboration</a>).</p>
+<p>Its chair is a senior director of artificial intelligence and data at Shutterstock. Participants include a content provenance coalition and an authenticity initiative founded by Adobe.</p>
+<p>None of this is hidden and none of it is improper. Standards bodies include industry because industry has the engineers and the deployment reach. Excluding them produces standards nobody implements.</p>
+<p>The definition of what counts as authentic content is being drafted by a collaboration led by a company that licenses content, alongside firms that build the tools generating the synthetic material.</p>
+<p>The doubt arrived first. Then the remedy arrived, priced, from adjacent rooms.</p>
+<h2>Who carries the cost of being wrong</h2>
+<p>Verification burden does not fall evenly. It falls on people applying for unemployment insurance, on benefits claimants, on gig workers whose accounts can be switched off, on immigrants, on students. On people whose relationship to an institution is one where refusing the scan means losing the money, the job, or the degree.</p>
+<p>A person with a lawyer and a salary encounters this as friction. Manjang encountered it as the end of his income, and it took a national equality regulator to get it looked at.</p>
+<p>The scans work correctly for most people most of the time. That is why the failures stay quiet. A system right ninety-something percent of the time produces a small population who cannot get through and cannot find anyone to appeal to, and that population is not randomly drawn.</p>
