@@ -3,7 +3,7 @@ from build_content import ESSAYS, CAT_CLASS
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE_NAME = "Jennifer McKinney"
-TAGLINE = "Essays &amp; papers on AI ethics, labor, compliance, and architecture."
+TAGLINE = "Essays &amp; papers on AI ethics, labor, compliance, governance, and architecture."
 
 def logo_mark(prefix=""):
     return f'<img class="wordmark__mark" src="{prefix}img/logo-mark.png" alt="" width="30" height="30" loading="eager" decoding="async" />'
@@ -65,7 +65,7 @@ def header(prefix="", active=""):
   <div class="container site-header__inner">
     <a class="wordmark" href="{prefix}index.html">
       {logo_mark(prefix)}
-      <span>{SITE_NAME}<br/><small>Writing on AI Ethics, Architecture &amp; Governance</small></span>
+      <span>{SITE_NAME}<br/><small>Writing on AI Ethics, Compliance, Architecture &amp; Governance</small></span>
     </a>
     <nav class="main-nav" aria-label="Primary" data-main-nav data-open="false">
       <button class="nav-toggle" data-nav-toggle type="button" aria-label="Open navigation" aria-expanded="false">
@@ -103,6 +103,7 @@ def footer(prefix=""):
           <li><a href="{prefix}writing.html">All writing</a></li>
           <li><a href="{prefix}writing.html#architecture">Architecture</a></li>
           <li><a href="{prefix}writing.html#compliance">Compliance</a></li>
+          <li><a href="{prefix}writing.html#governance">Governance</a></li>
           <li><a href="{prefix}writing.html#ai-ethics">AI Ethics</a></li>
           <li><a href="{prefix}writing.html#labor">Labor</a></li>
         </ul>
