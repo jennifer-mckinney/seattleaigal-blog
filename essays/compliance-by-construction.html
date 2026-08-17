@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>
+(function () {
+  var t = null;
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var qt = params.get('theme');
+    if (qt === 'light' || qt === 'dark') t = qt;
+  } catch (e) {}
+  if (t !== 'light' && t !== 'dark') {
+    t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
+<title>Compliance by Construction: Building a Terms-of-Service Risk Engine That Runs Entirely On-Device — Jennifer McKinney</title>
+<meta name="description" content="Inside an open-source terms-of-service risk engine built to run entirely on local, on-device models, and what it means to make a governance idea operational." />
+<meta property="og:title" content="Compliance by Construction: Building a Terms-of-Service Risk Engine That Runs Entirely On-Device — Jennifer McKinney" />
+<meta property="og:description" content="Inside an open-source terms-of-service risk engine built to run entirely on local, on-device models, and what it means to make a governance idea operational." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="../img/hero-blueprint.png" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M4 26V15.5C4 10.8 9.4 7 16 7C22.6 7 28 10.8 28 15.5V26' fill='none' stroke='%23233350' stroke-width='2.4'/%3E%3Cpath d='M4 26H28' stroke='%23233350' stroke-width='2.4'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../css/tokens.css" />
+<link rel="stylesheet" href="../css/base.css" />
+<link rel="stylesheet" href="../css/site.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="wordmark" href="../index.html">
+      <img class="wordmark__mark" src="../img/logo-mark.png" alt="" width="30" height="30" loading="eager" decoding="async" />
+      <span>Jennifer McKinney<br/><small>Writing on AI Ethics, Architecture &amp; Governance</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Primary" data-main-nav data-open="false">
+      <button class="nav-toggle" data-nav-toggle type="button" aria-label="Open navigation" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <line x1="2" y1="5" x2="18" y2="5"/>
+          <line x1="2" y1="10" x2="18" y2="10"/>
+          <line x1="2" y1="15" x2="18" y2="15"/>
+        </svg>
+      </button>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../writing.html" aria-current="page">Writing</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../about.html#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Switch to dark mode"></button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <article>
+    <header class="article-head container--narrow container">
+      <span class="chip chip--architecture">Architecture</span> <span class="chip" style="color:var(--color-text-faint);">&middot; Technical Paper</span>
+      <h1>Compliance by Construction: Building a Terms-of-Service Risk Engine That Runs Entirely On-Device</h1>
+      <p class="dek">Inside an open-source terms-of-service risk engine built to run entirely on local, on-device models, and what it means to make a governance idea operational.</p>
+      <div class="byline">
+        <div class="byline__avatar">JM</div>
+        <div><strong>Jennifer McKinney</strong><br/>July 29, 2026 &middot; 7 min technical paper</div>
+      </div>
+      <div class="article-actions">
+        <a class="btn btn--primary" href="../pdfs/compliance-by-construction.pdf">Download PDF</a>
+        <a class="btn btn--ghost" href="../writing.html">Back to all writing</a>
+      </div>
+    </header>
+
+    <div class="article-body container" data-essay="compliance-by-construction">
+      <p>Terms of service and privacy policies are an awkward input for conventional software. They are long, mutable, ambiguous, and legally consequential. They rarely arrive in a clean schema. They arrive as a URL, a PDF, a DOCX file, an HTML page, or text pasted from a browser. The important clauses are often distributed across documents and written in language that is deliberately broad.</p>
+<p>That makes them a tempting use case for a large language model. It also makes them a poor use case for a system that treats the model as an oracle.</p>
+<p>I built the open-source <strong>AI Terms &amp; Policies Reviewer</strong> around a different premise: contract and policy analysis should be a structured, reviewable risk workflow, and the documents under review should be able to remain on the operator’s device. The project accepts URLs, PDFs, DOCX, RTF, HTML, and pasted text; analyzes the material against a defined risk taxonomy; maps results to jurisdictions and industry profiles; and produces reports in PDF, CSV, or JSON. <a href="https://github.com/jennifer-mckinney/terms-analysis">AI Terms &amp; Policies Reviewer README</a></p>
+<p>The local-first choice is not aesthetic. A vendor contract can contain pricing, customer commitments, business strategy, data-processing terms, incident language, and negotiated exceptions. A privacy policy may be public, but the analysis around it often is not. Sending the full document and an organization’s internal risk prompts to a third-party API changes the data boundary before the review has even begun.</p>
+<p>Running inference locally creates a simpler boundary: the document, the prompts, the intermediate analysis, and the resulting record can remain in the environment the operator controls. That does not eliminate security work. Local deployment still requires sound endpoint security, access control, retention decisions, and operational discipline. It does mean that a contract-analysis tool does not need to make an external-model provider part of every review.</p>
+<p>The implementation uses LocalAI as the local inference endpoint and is configured for two models: Apertus 8B Instruct for multilingual or global material and EuroLLM 22B Instruct for European-language material. The project exposes the model choice through configuration rather than burying it in application logic. That is intentional. Model selection is part of the review context, and it should be inspectable and changeable without rewriting the rest of the system. <a href="https://github.com/jennifer-mckinney/terms-analysis">AI Terms &amp; Policies Reviewer README</a> <a href="https://huggingface.co/swiss-ai/Apertus-8B-Instruct-2509">Apertus 8B Instruct</a> <a href="https://huggingface.co/utter-project/EuroLLM-22B-Instruct-2512">EuroLLM 22B Instruct</a></p>
+<p>The architecture is deliberately ordinary where it should be ordinary. A FastAPI backend handles analysis, ingestion, model integration, and persistence. A Streamlit interface provides the operator-facing workflow. SQLite is the default local data store. There are endpoints for raw-text analysis, URL analysis, and file uploads, as well as endpoints to retrieve analyses, manage a watchlist, and export a report. This is not an attempt to turn a terms reviewer into an agentic system with broad authority. It is a bounded analysis service with explicit inputs and outputs. <a href="https://github.com/jennifer-mckinney/terms-analysis">AI Terms &amp; Policies Reviewer README</a></p>
+<p>The core design question is not “Can an LLM summarize this policy?” It can. The more important question is “What risk categories must remain visible even when the prose changes?”</p>
+<p>The system uses a fixed taxonomy for that reason:</p>
+<table>
+<thead>
+<tr>
+<th>Risk category</th>
+<th>Review question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data sharing</td>
+<td>Does the document permit third-party sales, broad sharing, or data-broker relationships?</td>
+</tr>
+<tr>
+<td>Automated decisions</td>
+<td>Does it permit profiling or automated decisions without meaningful human review?</td>
+</tr>
+<tr>
+<td>Dark patterns</td>
+<td>Does it use deceptive consent language or hide opt-out choices?</td>
+</tr>
+<tr>
+<td>Retention</td>
+<td>Are data-storage periods indefinite or deletion timelines vague?</td>
+</tr>
+<tr>
+<td>User rights</td>
+<td>Are access, correction, and deletion mechanisms missing or obscured?</td>
+</tr>
+<tr>
+<td>Minors</td>
+<td>Are protections for children inadequate or unclear?</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>How are biometric, health, or financial data addressed?</td>
+</tr>
+<tr>
+<td>Unilateral changes</td>
+<td>Can terms change without meaningful notice?</td>
+</tr>
+<tr>
+<td>Liability</td>
+<td>Do limitations of liability or forced-arbitration terms create disproportionate exposure?</td>
+</tr>
+</tbody>
+</table>
+<p>This taxonomy is the first constraint. It prevents the model from deciding, ad hoc, what matters. The model can identify clauses and explain implications in plain language, but it operates within a known set of review dimensions. That distinction is easy to overlook. A generic chat interface produces a fluid conversation. A risk engine produces an accountable artifact.</p>
+<p>The artifact needs more than labels. It needs severity, evidence, and a path to human judgment. The current implementation uses a severity-weighted average on a 0 to 10 scale and letter grades. It also documents an Impact, Likelihood, and Safeguards, or IRP, methodology as a planned enhancement rather than presenting a future feature as present functionality. The project’s <code>REVIEW_THRESHOLD</code> configuration defaults to 0.80 for human review. <a href="https://github.com/jennifer-mckinney/terms-analysis">AI Terms &amp; Policies Reviewer README</a></p>
+<p>That threshold is a small but important design decision. The system should not present all output with the same epistemic weight. A high-confidence, strongly evidenced clause can be surfaced differently from an ambiguous provision, a degraded extraction, or a document that sits at the edge of the available jurisdictional logic. A confidence gate is not a substitute for counsel. It is a way to route uncertainty to the point where judgment belongs.</p>
+<p>Jurisdiction mapping is the second major constraint. The reviewer is configured to map analysis across U.S. federal law and selected state contexts including California, Colorado, Connecticut, and New York, plus the EU/GDPR, United Kingdom, Canada, Australia, and Brazil. It also provides industry profiles for retail, finance, health, gaming, social, and education. <a href="https://github.com/jennifer-mckinney/terms-analysis">AI Terms &amp; Policies Reviewer README</a></p>
+<p>This should not be confused with automated legal advice. A term may be low-risk for one use case and unacceptable for another. Jurisdictional mapping does not turn a product requirement into a legal conclusion. It does something more pragmatic: it makes the context explicit. It gives a reviewer a structured place to ask whether a clause about retention, profiling, minors, or data sharing matters differently for a retailer, a health workflow, or a product serving multiple regions.</p>
+<p>The watchlist feature extends that logic over time. A single policy review is useful, but terms change. Monitoring a document for changes turns a static due-diligence event into a record of what changed, when it changed, and which risk category needs to be reconsidered. That is the beginning of provenance. The system is not merely generating a summary. It is maintaining a reviewable history of the policy surface that informed a decision. <a href="https://github.com/jennifer-mckinney/terms-analysis">AI Terms &amp; Policies Reviewer README</a></p>
+<p>This is constraint-native thinking in a concrete system.</p>
+<p>The privacy constraint is expressed through local inference rather than a preference statement in a policy. The review constraint is expressed through a defined taxonomy rather than an open-ended prompt. The uncertainty constraint is expressed through a configurable human-review threshold rather than an assumption that the model is correct. The jurisdictional constraint is expressed through explicit mappings rather than an after-the-fact disclaimer. The auditability constraint is expressed through saved analyses, watchlists, and exportable artifacts rather than a transient chat response.</p>
+<p>None of those choices makes the tool infallible. The project explicitly states that it does not provide legal advice, replace qualified counsel, guarantee completeness, or make binding legal determinations. Those are not decorative limitations. They define the authority boundary of the system. <a href="https://github.com/jennifer-mckinney/terms-analysis">AI Terms &amp; Policies Reviewer README</a></p>
+<p>That boundary is the point. In compliance work, a useful system should be confident about what it is designed to do and constrained about what it is not authorized to do. It should accelerate triage, preserve the evidence for a decision, and make escalation intentional. It should not manufacture certainty where a qualified human must exercise judgment.</p>
+<p>The most interesting part of this project is not that an LLM can read a contract. That is quickly becoming table stakes. The interesting part is whether we can build analysis systems whose privacy, risk model, decision thresholds, jurisdictional context, and authority limits are visible in their construction. That is what makes a governance idea operational.</p>
+
+      <hr/>
+      <h3>Sources</h3>
+      <ul class="sources-list">
+        <li><a href="https://github.com/jennifer-mckinney/terms-analysis">AI Terms &amp; Policies Reviewer README</a></li>
+<li><a href="https://huggingface.co/swiss-ai/Apertus-8B-Instruct-2509">Apertus 8B Instruct</a></li>
+<li><a href="https://huggingface.co/utter-project/EuroLLM-22B-Instruct-2512">EuroLLM 22B Instruct</a></li>
+      </ul>
+    </div>
+  </article>
+
+  <section class="related container">
+    <div class="section-head reveal" style="margin-top: var(--space-16);">
+      <h2>Continue reading</h2>
+    </div>
+    <div class="card-grid">
+      
+      <article class="card reveal" data-category="Architecture Compliance">
+        <a class="card__art" href="../essays/built-in-not-bolted-on.html"><img src="../img/essay-architecture.png" alt="Built In, Not Bolted On: Constraint-Native Architecture as a Design Stance" loading="lazy" /></a>
+        <div class="chip-row"><span class="chip chip--architecture">Architecture</span><span class="chip chip--compliance">Compliance</span></div>
+        <h3><a href="../essays/built-in-not-bolted-on.html">Built In, Not Bolted On: Constraint-Native Architecture as a Design Stance</a></h3>
+        <p class="dek">Constraints, safety, and provenance are load-bearing structure, not paperwork bolted on after launch. A design stance for building AI systems that cannot be configured into failure.</p>
+        <div class="card__meta"><span>July 22, 2026</span><span class="dot"></span><span>7 min essay</span></div>
+      </article>
+
+      <article class="card reveal" data-category="Architecture Compliance">
+        <a class="card__art" href="../essays/constraints-in-orbit-heat.html"><img src="../img/essay-orbital.png" alt="The Constraints We Put in Orbit, Part I: The Heat Problem We Keep Calling a Bandwidth Problem" loading="lazy" /></a>
+        <div class="chip-row"><span class="chip chip--architecture">Architecture</span><span class="chip chip--compliance">Compliance</span></div>
+        <h3><a href="../essays/constraints-in-orbit-heat.html">The Constraints We Put in Orbit, Part I: The Heat Problem We Keep Calling a Bandwidth Problem</a></h3>
+        <p class="dek">Part I of III. Orbital AI data centers don't have a bandwidth problem, they have a heat problem: a thermodynamic law no one can bargain with, hiding one layer beneath the laser downlinks everyone argues about.</p>
+        <div class="card__meta"><span>August 15, 2026</span><span class="dot"></span><span>21 min technical paper</span></div>
+      </article>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="wordmark" href="../index.html"><img class="wordmark__mark" src="../img/logo-mark.png" alt="" width="30" height="30" loading="eager" decoding="async" /><span>Jennifer McKinney</span></a>
+      <p class="footer-note">Essays &amp; papers on AI ethics, labor, compliance, and architecture.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <h4>Read</h4>
+        <ul>
+          <li><a href="../writing.html">All writing</a></li>
+          <li><a href="../writing.html#architecture">Architecture</a></li>
+          <li><a href="../writing.html#compliance">Compliance</a></li>
+          <li><a href="../writing.html#ai-ethics">AI Ethics</a></li>
+          <li><a href="../writing.html#labor">Labor</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="mailto:jennifer.mckinney@croiai.com">Email</a></li>
+          <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>&copy; 2026 Jennifer McKinney. All essays and papers are original work. All views, opinions, and positions expressed are my own and my sole responsibility. AI assisted in structural editing and citation verification.</span>
+    <span>Built on a constraint-native design stance.</span>
+  </div>
+</footer>
+<script src="../js/main.js"></script>
+<script src="../js/charts.js"></script>
+</body>
+</html>

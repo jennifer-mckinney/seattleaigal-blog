@@ -1,0 +1,148 @@
+/* ===================================================================
+   DESIGN TOKENS — Jennifer McKinney writing site
+   Concept: a policy-journal aesthetic — warm paper, ink text, one
+   disciplined navy accent, and four muted category colors (Architecture,
+   Compliance, AI Ethics, Labor) that read like archival index tabs.
+   =================================================================== */
+
+:root {
+  /* ---- Type scale (fluid, clamp-based) ---- */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.25rem);
+  --text-3xl: clamp(2.5rem, 1rem + 4vw, 4.5rem);
+  --text-hero: clamp(2.75rem, 0.5rem + 6vw, 6.5rem);
+
+  /* ---- 4px spacing system ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* ---- Radius ---- */
+  /* Sharp, editorial corners throughout (ref: Instrument Serif / Inter style guide) —
+     circles are the only exception, reserved for icon controls and avatars. */
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-full: 9999px;
+
+  /* ---- Transitions ---- */
+  --transition-interactive: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---- Content widths ---- */
+  --content-narrow: 640px;
+  --content-default: 960px;
+  --content-wide: 1240px;
+  --content-full: 100%;
+
+  /* ---- Fonts ---- */
+  /* Instrument Serif (display, regular weight only) + Inter (everything functional) */
+  --font-display: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  --font-body: 'Inter', 'Segoe UI', Helvetica, sans-serif;
+  --font-mono: 'ui-monospace', 'SF Mono', Consolas, monospace;
+}
+
+/* ============================= LIGHT ============================= */
+:root,
+[data-theme='light'] {
+  /* Surfaces — warm archival paper */
+  --color-bg: #f6f3ec;
+  --color-surface: #fbf9f3;
+  --color-surface-2: #ffffff;
+  --color-surface-offset: #efeade;
+  --color-surface-offset-2: #e8e2d2;
+  --color-divider: #e2dccb;
+  --color-border: #d6cdb6;
+
+  /* Text — warm ink */
+  --color-text: #201c15;
+  --color-text-muted: #6b6353;
+  --color-text-faint: #a49b86;
+  --color-text-inverse: #f8f5ee;
+
+  /* Primary accent — ledger navy */
+  --color-primary: #233350;
+  --color-primary-hover: #16233a;
+  --color-primary-active: #0f1828;
+  --color-primary-highlight: #d9dfe8;
+
+  /* Category: Architecture (steel blue) */
+  --color-architecture: #2f5069;
+  --color-architecture-highlight: #dbe5ea;
+
+  /* Category: Compliance (moss olive) */
+  --color-compliance: #566023;
+  --color-compliance-highlight: #e1e2cd;
+
+  /* Category: AI Ethics (oxblood) */
+  --color-ethics: #7c3430;
+  --color-ethics-highlight: #ead6d3;
+
+  /* Category: Labor (ochre) */
+  --color-labor: #8a5a17;
+  --color-labor-highlight: #ecdfc3;
+
+  /* Status colors (kept for form/UI states only) */
+  --color-warning: #8a5a17;
+  --color-error: #7c3430;
+  --color-success: #566023;
+
+  --shadow-sm: 0 1px 2px rgba(32, 28, 21, 0.06);
+  --shadow-md: 0 6px 18px rgba(32, 28, 21, 0.08);
+  --shadow-lg: 0 18px 44px rgba(32, 28, 21, 0.14);
+}
+
+/* ============================= DARK ============================= */
+[data-theme='dark'] {
+  --color-bg: #14130f;
+  --color-surface: #191811;
+  --color-surface-2: #1e1c14;
+  --color-surface-offset: #211f16;
+  --color-surface-offset-2: #292619;
+  --color-divider: #2b291d;
+  --color-border: #3a3624;
+
+  --color-text: #eae4d3;
+  --color-text-muted: #a89f89;
+  --color-text-faint: #6f6852;
+  --color-text-inverse: #191811;
+
+  --color-primary: #8fa3c2;
+  --color-primary-hover: #a9bad3;
+  --color-primary-active: #c2cfe1;
+  --color-primary-highlight: #263449;
+
+  --color-architecture: #7ea3bd;
+  --color-architecture-highlight: #223140;
+
+  --color-compliance: #a3af6c;
+  --color-compliance-highlight: #2c3018;
+
+  --color-ethics: #c98b86;
+  --color-ethics-highlight: #3a201e;
+
+  --color-labor: #d1a35b;
+  --color-labor-highlight: #3a2c14;
+
+  --color-warning: #d1a35b;
+  --color-error: #c98b86;
+  --color-success: #a3af6c;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 18px 44px rgba(0, 0, 0, 0.5);
+}

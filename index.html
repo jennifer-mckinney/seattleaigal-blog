@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>
+(function () {
+  var t = null;
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var qt = params.get('theme');
+    if (qt === 'light' || qt === 'dark') t = qt;
+  } catch (e) {}
+  if (t !== 'light' && t !== 'dark') {
+    t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
+<title>Jennifer McKinney — Essays &amp; Papers on AI Ethics, Labor, Compliance, and Architecture</title>
+<meta name="description" content="Essays and technical papers by Jennifer McKinney on AI ethics, compliance, and architecture, with downloadable PDFs." />
+<meta property="og:title" content="Jennifer McKinney — Essays &amp; Papers on AI Ethics, Labor, Compliance, and Architecture" />
+<meta property="og:description" content="Essays and technical papers by Jennifer McKinney on AI ethics, compliance, and architecture, with downloadable PDFs." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="img/hero-blueprint.png" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M4 26V15.5C4 10.8 9.4 7 16 7C22.6 7 28 10.8 28 15.5V26' fill='none' stroke='%23233350' stroke-width='2.4'/%3E%3Cpath d='M4 26H28' stroke='%23233350' stroke-width='2.4'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/tokens.css" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/site.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="wordmark" href="index.html">
+      <img class="wordmark__mark" src="img/logo-mark.png" alt="" width="30" height="30" loading="eager" decoding="async" />
+      <span>Jennifer McKinney<br/><small>Writing on AI Ethics, Architecture &amp; Governance</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Primary" data-main-nav data-open="false">
+      <button class="nav-toggle" data-nav-toggle type="button" aria-label="Open navigation" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <line x1="2" y1="5" x2="18" y2="5"/>
+          <line x1="2" y1="10" x2="18" y2="10"/>
+          <line x1="2" y1="15" x2="18" y2="15"/>
+        </svg>
+      </button>
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="writing.html">Writing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="about.html#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Switch to dark mode"></button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true"><img src="img/hero-blueprint.png" alt="" /></div>
+    
+<svg class="blueprint" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <g fill="none" stroke="currentColor" stroke-width="1" opacity="0.16" style="color: var(--color-text-faint);">
+    <path d="M0 650 Q 300 480 600 650 T 1200 650" />
+    <circle cx="960" cy="140" r="90" stroke-dasharray="2 6"/>
+    <circle cx="960" cy="140" r="130" stroke-dasharray="2 6"/>
+    <line x1="960" y1="10" x2="960" y2="270"/>
+    <line x1="830" y1="140" x2="1090" y2="140"/>
+    <path d="M120 650 V420 Q120 340 300 340 Q480 340 480 420 V650" />
+    <path d="M540 650 V460 Q540 380 700 380 Q860 380 860 460 V650" />
+  </g>
+</svg>
+
+    <div class="container hero__grid">
+      <div>
+        <p class="hero__eyebrow">Essays &amp; technical papers</p>
+        <h1>Constraints are <em>structure,</em><br/>not paperwork.</h1>
+        <p class="hero__lede">I write about the design decisions that make AI systems trustworthy by construction: architecture, compliance, and the ethics of automating decisions about people.</p>
+      </div>
+      <div class="hero__meta">
+        <p>By Jennifer McKinney — Strategic Technology Leader, founder of Croí AI, and founder &amp; board VP of the AI Ethics Consortium.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="section-head reveal">
+      <h2>Featured</h2>
+      <span class="section-head__num">01</span>
+    </div>
+    <article class="feature reveal">
+      <a class="feature__art" href="essays/built-in-not-bolted-on.html"><img src="img/essay-architecture.png" alt="" /></a>
+      <div class="feature__body">
+        <span class="chip chip--architecture">Architecture</span>
+        <h3><a href="essays/built-in-not-bolted-on.html">Built In, Not Bolted On: Constraint-Native Architecture as a Design Stance</a></h3>
+        <p class="dek">Constraints, safety, and provenance are load-bearing structure, not paperwork bolted on after launch. A design stance for building AI systems that cannot be configured into failure.</p>
+        <div class="feature__foot">
+          <a class="btn btn--ghost btn--sm" href="essays/built-in-not-bolted-on.html">Read the essay</a>
+          <a class="btn btn--ghost btn--sm" href="pdfs/built-in-not-bolted-on.pdf">Download PDF</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="container">
+    <div class="section-head reveal">
+      <h2>Recent writing</h2>
+      <span class="section-head__num">02</span>
+    </div>
+    <div class="card-grid">
+      
+      <article class="card reveal" data-category="Compliance Architecture">
+        <a class="card__art" href="essays/the-governance-gap.html"><img src="img/essay-compliance.png" alt="The Governance Gap: What AI Vendor Risk Actually Costs Mid-Market Companies" loading="lazy" /></a>
+        <div class="chip-row"><span class="chip chip--compliance">Compliance</span><span class="chip chip--architecture">Architecture</span></div>
+        <h3><a href="essays/the-governance-gap.html">The Governance Gap: What AI Vendor Risk Actually Costs Mid-Market Companies</a></h3>
+        <p class="dek">The data on AI vendor risk tells a less dramatic, more useful story than the sales pitch: a real coverage gap, real procurement friction, and very little evidence anyone is writing large new checks.</p>
+        <div class="card__meta"><span>August 15, 2026</span><span class="dot"></span><span>7 min essay</span></div>
+      </article>
+
+      <article class="card reveal" data-category="Architecture Compliance">
+        <a class="card__art" href="essays/constraints-in-orbit-heat.html"><img src="img/essay-orbital.png" alt="The Constraints We Put in Orbit, Part I: The Heat Problem We Keep Calling a Bandwidth Problem" loading="lazy" /></a>
+        <div class="chip-row"><span class="chip chip--architecture">Architecture</span><span class="chip chip--compliance">Compliance</span></div>
+        <h3><a href="essays/constraints-in-orbit-heat.html">The Constraints We Put in Orbit, Part I: The Heat Problem We Keep Calling a Bandwidth Problem</a></h3>
+        <p class="dek">Part I of III. Orbital AI data centers don't have a bandwidth problem, they have a heat problem: a thermodynamic law no one can bargain with, hiding one layer beneath the laser downlinks everyone argues about.</p>
+        <div class="card__meta"><span>August 15, 2026</span><span class="dot"></span><span>21 min technical paper</span></div>
+      </article>
+
+      <article class="card reveal" data-category="Compliance Architecture">
+        <a class="card__art" href="essays/constraints-in-orbit-jurisdiction.html"><img src="img/essay-orbital.png" alt="The Constraints We Put in Orbit, Part II: Sovereignty Doesn't Subtract in Orbit, It Stacks" loading="lazy" /></a>
+        <div class="chip-row"><span class="chip chip--compliance">Compliance</span><span class="chip chip--architecture">Architecture</span></div>
+        <h3><a href="essays/constraints-in-orbit-jurisdiction.html">The Constraints We Put in Orbit, Part II: Sovereignty Doesn't Subtract in Orbit, It Stacks</a></h3>
+        <p class="dek">Part II of III. Going to orbit doesn't subtract a regulator, it stacks several incompatible sovereigns onto one moving object, and the seams between their legal theories are where accountability dies.</p>
+        <div class="card__meta"><span>August 15, 2026</span><span class="dot"></span><span>14 min technical paper</span></div>
+      </article>
+
+      <article class="card reveal" data-category="Compliance AI Ethics">
+        <a class="card__art" href="essays/constraints-in-orbit-governance.html"><img src="img/essay-orbital.png" alt="The Constraints We Put in Orbit, Part III: The Governance Gap Is Filled by Discretion" loading="lazy" /></a>
+        <div class="chip-row"><span class="chip chip--compliance">Compliance</span><span class="chip chip--ethics">AI Ethics</span></div>
+        <h3><a href="essays/constraints-in-orbit-governance.html">The Constraints We Put in Orbit, Part III: The Governance Gap Is Filled by Discretion</a></h3>
+        <p class="dek">Part III of III. The governance gap orbit creates is filled by nothing but operator discretion, and the analysts we'd use to check that discretion are paid by the same people whose discretion is in question.</p>
+        <div class="card__meta"><span>August 15, 2026</span><span class="dot"></span><span>10 min technical paper</span></div>
+      </article>
+
+      <article class="card reveal" data-category="AI Ethics Compliance">
+        <a class="card__art" href="essays/generational-digital-divide.html"><img src="img/essay-deepfakes.png" alt="The Generational Digital Divide: AI-Generated Deepfakes and Their Differential Impact on Social Media Platform Trust Across Age Cohorts" loading="lazy" /></a>
+        <div class="chip-row"><span class="chip chip--ethics">AI Ethics</span><span class="chip chip--compliance">Compliance</span></div>
+        <h3><a href="essays/generational-digital-divide.html">The Generational Digital Divide: AI-Generated Deepfakes and Their Differential Impact on Social Media Platform Trust Across Age Cohorts</a></h3>
+        <p class="dek">A generational fault line is forming around synthetic media: one cohort adapts to a post-authentic internet while another retreats into smaller, verified circles. What that split means for platform trust, and how long the window for intervention stays open.</p>
+        <div class="card__meta"><span>August 13, 2026</span><span class="dot"></span><span>36 min research paper</span></div>
+      </article>
+
+      <article class="card reveal" data-category="Labor AI Ethics">
+        <a class="card__art" href="essays/program-management-ai-governance.html"><img src="img/essay-labor.png" alt="Program Management Is Becoming an AI Governance Discipline, Whether We Call It That or Not" loading="lazy" /></a>
+        <div class="chip-row"><span class="chip chip--labor">Labor</span><span class="chip chip--ethics">AI Ethics</span></div>
+        <h3><a href="essays/program-management-ai-governance.html">Program Management Is Becoming an AI Governance Discipline, Whether We Call It That or Not</a></h3>
+        <p class="dek">AI governance keeps landing on program managers' desks whether the org chart says so or not. A case for treating the discipline as architecture, not administration.</p>
+        <div class="card__meta"><span>August 8, 2026</span><span class="dot"></span><span>6 min essay</span></div>
+      </article>
+
+      <article class="card reveal" data-category="Architecture Compliance">
+        <a class="card__art" href="essays/compliance-by-construction.html"><img src="img/essay-technical.png" alt="Compliance by Construction: Building a Terms-of-Service Risk Engine That Runs Entirely On-Device" loading="lazy" /></a>
+        <div class="chip-row"><span class="chip chip--architecture">Architecture</span><span class="chip chip--compliance">Compliance</span></div>
+        <h3><a href="essays/compliance-by-construction.html">Compliance by Construction: Building a Terms-of-Service Risk Engine That Runs Entirely On-Device</a></h3>
+        <p class="dek">Inside an open-source terms-of-service risk engine built to run entirely on local, on-device models, and what it means to make a governance idea operational.</p>
+        <div class="card__meta"><span>July 29, 2026</span><span class="dot"></span><span>7 min technical paper</span></div>
+      </article>
+
+      <article class="card reveal" data-category="AI Ethics Labor">
+        <a class="card__art" href="essays/what-store-managers-taught-me.html"><img src="img/essay-ethics.png" alt="What Store Managers Taught Me About Automating Hiring Decisions" loading="lazy" /></a>
+        <div class="chip-row"><span class="chip chip--ethics">AI Ethics</span><span class="chip chip--labor">Labor</span></div>
+        <h3><a href="essays/what-store-managers-taught-me.html">What Store Managers Taught Me About Automating Hiring Decisions</a></h3>
+        <p class="dek">A reflection on leading AI governance for a hiring system used across a large multi-brand retail footprint, and what consent, bias, and dignity look like from the applicant's side of the screen.</p>
+        <div class="card__meta"><span>June 10, 2026</span><span class="dot"></span><span>6 min essay</span></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="contact-strip reveal">
+      <h2>Sharing this with a recruiter, client, or collaborator?</h2>
+      <div class="contact-links">
+        <a class="btn btn--primary" href="about.html#contact">Get in touch</a>
+        <a class="btn btn--ghost" href="about.html">Read my background</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="wordmark" href="index.html"><img class="wordmark__mark" src="img/logo-mark.png" alt="" width="30" height="30" loading="eager" decoding="async" /><span>Jennifer McKinney</span></a>
+      <p class="footer-note">Essays &amp; papers on AI ethics, labor, compliance, and architecture.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <h4>Read</h4>
+        <ul>
+          <li><a href="writing.html">All writing</a></li>
+          <li><a href="writing.html#architecture">Architecture</a></li>
+          <li><a href="writing.html#compliance">Compliance</a></li>
+          <li><a href="writing.html#ai-ethics">AI Ethics</a></li>
+          <li><a href="writing.html#labor">Labor</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="mailto:jennifer.mckinney@croiai.com">Email</a></li>
+          <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>&copy; 2026 Jennifer McKinney. All essays and papers are original work. All views, opinions, and positions expressed are my own and my sole responsibility. AI assisted in structural editing and citation verification.</span>
+    <span>Built on a constraint-native design stance.</span>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/charts.js"></script>
+</body>
+</html>

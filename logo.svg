@@ -1,0 +1,10 @@
+<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <!-- blueprint alignment marks, echoing the construction gridlines in the essay illustrations -->
+  <line x1="16" y1="0.5" x2="16" y2="3.5" stroke="currentColor" stroke-width="1" stroke-dasharray="1 1.4" opacity="0.45"/>
+  <line x1="28.5" y1="14" x2="31.5" y2="14" stroke="currentColor" stroke-width="1" stroke-dasharray="1 1.4" opacity="0.45"/>
+  <path d="M4 26V15.5C4 10.8 9.4 7 16 7C22.6 7 28 10.8 28 15.5V26" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M4 26H28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <path d="M12 26V17.5C12 15.6 13.8 14 16 14C18.2 14 20 15.6 20 17.5V26" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- keystone accent: the single steel-blue highlight used across the essay illustrations -->
+  <path d="M14.1 14 L17.9 14 L17.3 8.3 L14.7 8.3 Z" fill="var(--color-primary, currentColor)"/>
+</svg>

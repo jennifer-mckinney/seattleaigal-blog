@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>
+(function () {
+  var t = null;
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var qt = params.get('theme');
+    if (qt === 'light' || qt === 'dark') t = qt;
+  } catch (e) {}
+  if (t !== 'light' && t !== 'dark') {
+    t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
+<title>Built In, Not Bolted On: Constraint-Native Architecture as a Design Stance — Jennifer McKinney</title>
+<meta name="description" content="Constraints, safety, and provenance are load-bearing structure, not paperwork bolted on after launch. A design stance for building AI systems that cannot be configured into failure." />
+<meta property="og:title" content="Built In, Not Bolted On: Constraint-Native Architecture as a Design Stance — Jennifer McKinney" />
+<meta property="og:description" content="Constraints, safety, and provenance are load-bearing structure, not paperwork bolted on after launch. A design stance for building AI systems that cannot be configured into failure." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="../img/hero-blueprint.png" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M4 26V15.5C4 10.8 9.4 7 16 7C22.6 7 28 10.8 28 15.5V26' fill='none' stroke='%23233350' stroke-width='2.4'/%3E%3Cpath d='M4 26H28' stroke='%23233350' stroke-width='2.4'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../css/tokens.css" />
+<link rel="stylesheet" href="../css/base.css" />
+<link rel="stylesheet" href="../css/site.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="wordmark" href="../index.html">
+      <img class="wordmark__mark" src="../img/logo-mark.png" alt="" width="30" height="30" loading="eager" decoding="async" />
+      <span>Jennifer McKinney<br/><small>Writing on AI Ethics, Architecture &amp; Governance</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Primary" data-main-nav data-open="false">
+      <button class="nav-toggle" data-nav-toggle type="button" aria-label="Open navigation" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <line x1="2" y1="5" x2="18" y2="5"/>
+          <line x1="2" y1="10" x2="18" y2="10"/>
+          <line x1="2" y1="15" x2="18" y2="15"/>
+        </svg>
+      </button>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../writing.html" aria-current="page">Writing</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../about.html#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Switch to dark mode"></button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <article>
+    <header class="article-head container--narrow container">
+      <span class="chip chip--architecture">Architecture</span> <span class="chip" style="color:var(--color-text-faint);">&middot; Essay</span>
+      <h1>Built In, Not Bolted On: Constraint-Native Architecture as a Design Stance</h1>
+      <p class="dek">Constraints, safety, and provenance are load-bearing structure, not paperwork bolted on after launch. A design stance for building AI systems that cannot be configured into failure.</p>
+      <div class="byline">
+        <div class="byline__avatar">JM</div>
+        <div><strong>Jennifer McKinney</strong><br/>July 22, 2026 &middot; 7 min essay</div>
+      </div>
+      <div class="article-actions">
+        <a class="btn btn--primary" href="../pdfs/built-in-not-bolted-on.pdf">Download PDF</a>
+        <a class="btn btn--ghost" href="../writing.html">Back to all writing</a>
+      </div>
+    </header>
+
+    <div class="article-body container" data-essay="built-in-not-bolted-on">
+      <p>The telling detail in a chatbot failure is often a boring one.</p>
+<p>In November 2025, Gap's customer-service chatbot was induced to discuss off-brand content. Sierra's abuse-detection system had caught the coordinated attack at other clients, but not at Gap, where the relevant guardrail was reportedly misconfigured. The explanation is not merely an operational postmortem. It is an architectural diagnosis. The safety property lived in a setting someone could get wrong, not in a structure that made the unsafe path unavailable. <a href="https://ccbjournal.com/blog/gap-chatbot-slip-reveals-guardrail-gaps">Corporate Counsel Business Journal</a> <a href="https://www.emarketer.com/content/gap-chatbot-jailbreak-brand-safety-risk">eMarketer</a></p>
+<p>That distinction has become central to how I think about AI systems. Constraints, safety, privacy, permissioning, and provenance are not paperwork that surrounds the product. They are load-bearing parts of the product. If a system can be made unsafe by changing a configuration flag, a prompt, or an application-layer shortcut, then its most important constraint has not been designed into the system boundary.</p>
+<p>I call the alternative <strong>constraint-native architecture</strong>. It is less a framework than a design stance. It asks, very early: <em>what does this system make impossible?</em> Not, “What policy will govern it after launch?” Not, “Which team will review it?” Those questions matter. But they come too late if the data model, API contract, and authority model already allow the very behavior the policy is meant to prevent.</p>
+<p>The failure pattern is familiar. Build the system. Add a policy. Convene a review board. Turn on a filter. Create a dashboard. Then call the result governed.</p>
+<p>Each of those can be useful. None is a substitute for a constraint that is structurally enforced.</p>
+<p>There are increasingly vivid examples. The OWASP GenAI project reported that Storm-2139 stole Azure OpenAI credentials in order to remove moderation guardrails and resell jailbroken access. That is what happens when a safety promise depends on credentials and configuration rather than an invariant of the whole operating environment. <a href="https://genai.owasp.org/2025/03/06/owasp-gen-ai-incident-exploit-round-up-jan-feb-2025/">OWASP Gen AI Incident Round-up</a> Windows Recall became another case study in retrofit: it shipped without encryption, researchers demonstrated that malware could extract captured history without administrator rights, and security features arrived after backlash. <a href="https://www.geekwire.com/2026/one-year-after-its-rocky-launch-microsofts-windows-recall-still-raises-security-red-flags/">GeekWire</a></p>
+<p>The same shape appears at a larger scale. A system that gathers sensitive data without a lawful-basis check in the collection path cannot repair that omission with a later policy memo. A system that locates enforcement only in a launch checklist cannot be surprised when the checklist is bypassed under pressure. The point is not that policy is useless. The point is that policy without an enforcement mechanism is a statement of intent.</p>
+<p>Constraint-native architecture moves the decision point upstream. It treats the constraint as a peer of the feature requirement. When the team decides how a customer record is represented, it also decides which data may never be collected. When it designs a tool interface, it decides where authorization is validated. When it defines model outputs, it decides which states should be unrepresentable. That is more demanding than adding a filter. It is also much more honest.</p>
+<p>Here is the compact version of the stance.</p>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Structural move</th>
+<th>Example of the pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Constraints as types, not policies</td>
+<td>Make invalid or non-compliant outputs unrepresentable</td>
+<td>OpenAI Structured Outputs includes a first-class refusal field in its schema. <a href="https://openai.com/index/introducing-structured-outputs-in-the-api/">OpenAI</a></td>
+</tr>
+<tr>
+<td>Refusal at the interface, not the output</td>
+<td>Put the decision before generation completes</td>
+<td>Anthropic describes classifiers that screen internal activations in real time. <a href="https://www.anthropic.com/research/next-generation-constitutional-classifiers">Anthropic</a></td>
+</tr>
+<tr>
+<td>Permission scoping at the protocol level</td>
+<td>Bind authorization beneath application logic</td>
+<td>MCP’s resource-server model validates scope on each tool call, and AWS supports making Bedrock Guardrails mandatory through IAM condition keys. <a href="https://modelcontextprotocol.io/docs/tutorials/security/authorization">Model Context Protocol</a> <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html">AWS</a></td>
+</tr>
+<tr>
+<td>Policy as code, not policy as document</td>
+<td>Version and execute governance rules automatically</td>
+<td>Open Policy Agent can gate infrastructure changes in CI/CD. <a href="https://openpolicyagent.org/docs">Open Policy Agent</a></td>
+</tr>
+<tr>
+<td>Provenance in the data model</td>
+<td>Make the record of a decision first-class and persistent</td>
+<td>Modern KYC/AML architecture uses versioned customer risk profiles rather than reconstructing decisions later. <a href="https://dev.to/andrewyakush/kycaml-in-2025-building-identity-verification-from-day-one-1gnc">DEV Community</a></td>
+</tr>
+<tr>
+<td>Verifiable by construction</td>
+<td>Test the mechanism, not only the outcome sample</td>
+<td>Anthropic reports more than 1,700 red-team hours and 198,000 attempts against its next-generation classifiers. <a href="https://www.anthropic.com/research/next-generation-constitutional-classifiers">Anthropic</a></td>
+</tr>
+</tbody>
+</table>
+<p>The table is not a vendor shopping list. It is a set of design moves. In every row, the key question is whether the constraint sits inside the path that performs the work. A post-generation content filter is different from a refusal state that the interface has to represent. A permissions spreadsheet is different from authorization that a resource server checks on every call. An audit report is different from a data model that retains the decision, inputs, policy version, and authority chain at the moment the decision occurs.</p>
+<p>This is also why I reject the standard objection that compliance slows delivery. Retrofitting is what slows delivery. One software-quality estimate puts the cost of a defect discovered in production at roughly 100 times the cost of finding it during design; industry research cites figures as high as 640 times for a security vulnerability found late rather than at coding. The exact multiplier varies by system. The directional lesson does not. Architectural debt compounds because each late fix must accommodate all the assumptions already shipped. <a href="https://betterqa.co/bug-fixing-costs-throughout-sdlc/">BetterQA</a> <a href="https://www.cisa.gov/sites/default/files/2023-06/principles_approaches_for_security-by-design-default_508c.pdf">CISA: Secure-by-Design Principles</a></p>
+<p>AI makes this cost curve sharper. IBM’s 2025 breach report places the global average cost of a breach at $4.44 million, while breaches involving shadow AI averaged $4.63 million. I do not read that as proof that one control solves the problem. I read it as evidence that ungoverned deployment is not free experimentation. It creates a measurable premium when failures arrive. <a href="https://www.ibm.com/reports/data-breach">IBM</a></p>
+<p>There is a second, subtler speed advantage. Constraints designed into a system can improve with the system. Anthropic says the compute overhead for its classifier approach declined from 23.7% in an earlier generation to roughly 1% in the next while robustness and accuracy improved. That is what compounding looks like: an enforcement mechanism becomes more efficient because it is part of the engineering roadmap. A patchwork of wrappers usually moves the other direction, with each exploit adding another exception, rule, and operational handoff. <a href="https://www.anthropic.com/research/next-generation-constitutional-classifiers">Anthropic</a></p>
+<p>This is no longer an eccentric view held by privacy engineers and safety researchers. NIST’s Generative AI Profile instructs organizations to proactively incorporate trustworthy characteristics into system requirements. CISA’s secure-by-design guidance makes the same move for software: security is a product property for which manufacturers must be able to compete, not a promise added in a marketing layer. <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf">NIST</a> <a href="https://www.cisa.gov/resources-tools/resources/secure-by-design">CISA</a></p>
+<p>In my own work at the intersection of program management, architecture, and AI governance, this changes the design review. I want three questions on the table before the data model is fixed.</p>
+<p>First: <strong>Where does refusal happen?</strong> If the answer is “a filter after generation,” we have identified a wrapper, not yet a boundary.</p>
+<p>Second: <strong>Who enforces scope, and can a configuration change bypass it?</strong> If a single setting can void the constraint, the system has delegated its trustworthiness to operational luck.</p>
+<p>Third: <strong>What does this structure make impossible to represent, not merely unlikely to occur?</strong> That is the question that reveals whether a team has a policy or an architecture.</p>
+<p>Constraint-native architecture is not the tax paid for trust. It is the decision to make trust structural. And structural things are the only things that reliably scale.</p>
+
+      <hr/>
+      <h3>Sources</h3>
+      <ul class="sources-list">
+        <li><a href="https://ccbjournal.com/blog/gap-chatbot-slip-reveals-guardrail-gaps">Corporate Counsel Business Journal</a></li>
+<li><a href="https://www.emarketer.com/content/gap-chatbot-jailbreak-brand-safety-risk">eMarketer</a></li>
+<li><a href="https://genai.owasp.org/2025/03/06/owasp-gen-ai-incident-exploit-round-up-jan-feb-2025/">OWASP Gen AI Incident Round-up</a></li>
+<li><a href="https://www.geekwire.com/2026/one-year-after-its-rocky-launch-microsofts-windows-recall-still-raises-security-red-flags/">GeekWire</a></li>
+<li><a href="https://openai.com/index/introducing-structured-outputs-in-the-api/">OpenAI</a></li>
+<li><a href="https://www.anthropic.com/research/next-generation-constitutional-classifiers">Anthropic</a></li>
+<li><a href="https://modelcontextprotocol.io/docs/tutorials/security/authorization">Model Context Protocol</a></li>
+<li><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html">AWS</a></li>
+<li><a href="https://openpolicyagent.org/docs">Open Policy Agent</a></li>
+<li><a href="https://dev.to/andrewyakush/kycaml-in-2025-building-identity-verification-from-day-one-1gnc">DEV Community</a></li>
+<li><a href="https://betterqa.co/bug-fixing-costs-throughout-sdlc/">BetterQA</a></li>
+<li><a href="https://www.cisa.gov/sites/default/files/2023-06/principles_approaches_for_security-by-design-default_508c.pdf">CISA: Secure-by-Design Principles</a></li>
+<li><a href="https://www.ibm.com/reports/data-breach">IBM</a></li>
+<li><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf">NIST</a></li>
+<li><a href="https://www.cisa.gov/resources-tools/resources/secure-by-design">CISA</a></li>
+      </ul>
+    </div>
+  </article>
+
+  <section class="related container">
+    <div class="section-head reveal" style="margin-top: var(--space-16);">
+      <h2>Continue reading</h2>
+    </div>
+    <div class="card-grid">
+      
+      <article class="card reveal" data-category="Architecture Compliance">
+        <a class="card__art" href="../essays/compliance-by-construction.html"><img src="../img/essay-technical.png" alt="Compliance by Construction: Building a Terms-of-Service Risk Engine That Runs Entirely On-Device" loading="lazy" /></a>
+        <div class="chip-row"><span class="chip chip--architecture">Architecture</span><span class="chip chip--compliance">Compliance</span></div>
+        <h3><a href="../essays/compliance-by-construction.html">Compliance by Construction: Building a Terms-of-Service Risk Engine That Runs Entirely On-Device</a></h3>
+        <p class="dek">Inside an open-source terms-of-service risk engine built to run entirely on local, on-device models, and what it means to make a governance idea operational.</p>
+        <div class="card__meta"><span>July 29, 2026</span><span class="dot"></span><span>7 min technical paper</span></div>
+      </article>
+
+      <article class="card reveal" data-category="Architecture Compliance">
+        <a class="card__art" href="../essays/constraints-in-orbit-heat.html"><img src="../img/essay-orbital.png" alt="The Constraints We Put in Orbit, Part I: The Heat Problem We Keep Calling a Bandwidth Problem" loading="lazy" /></a>
+        <div class="chip-row"><span class="chip chip--architecture">Architecture</span><span class="chip chip--compliance">Compliance</span></div>
+        <h3><a href="../essays/constraints-in-orbit-heat.html">The Constraints We Put in Orbit, Part I: The Heat Problem We Keep Calling a Bandwidth Problem</a></h3>
+        <p class="dek">Part I of III. Orbital AI data centers don't have a bandwidth problem, they have a heat problem: a thermodynamic law no one can bargain with, hiding one layer beneath the laser downlinks everyone argues about.</p>
+        <div class="card__meta"><span>August 15, 2026</span><span class="dot"></span><span>21 min technical paper</span></div>
+      </article>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="wordmark" href="../index.html"><img class="wordmark__mark" src="../img/logo-mark.png" alt="" width="30" height="30" loading="eager" decoding="async" /><span>Jennifer McKinney</span></a>
+      <p class="footer-note">Essays &amp; papers on AI ethics, labor, compliance, and architecture.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <h4>Read</h4>
+        <ul>
+          <li><a href="../writing.html">All writing</a></li>
+          <li><a href="../writing.html#architecture">Architecture</a></li>
+          <li><a href="../writing.html#compliance">Compliance</a></li>
+          <li><a href="../writing.html#ai-ethics">AI Ethics</a></li>
+          <li><a href="../writing.html#labor">Labor</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="mailto:jennifer.mckinney@croiai.com">Email</a></li>
+          <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>&copy; 2026 Jennifer McKinney. All essays and papers are original work. All views, opinions, and positions expressed are my own and my sole responsibility. AI assisted in structural editing and citation verification.</span>
+    <span>Built on a constraint-native design stance.</span>
+  </div>
+</footer>
+<script src="../js/main.js"></script>
+<script src="../js/charts.js"></script>
+</body>
+</html>

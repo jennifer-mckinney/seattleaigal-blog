@@ -1,0 +1,20 @@
+# Python
+_venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Claude project files (private)
+.claude/
+
+# Playwright test artifacts
+.playwright-mcp/
+
+# Editor
+.vscode/
+*.swp
