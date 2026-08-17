@@ -45,9 +45,9 @@ def head(title, description, prefix="", canonical=""):
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="{prefix}css/tokens.css" />
-<link rel="stylesheet" href="{prefix}css/base.css" />
-<link rel="stylesheet" href="{prefix}css/site.css" />
+<link rel="stylesheet" href="{prefix}css/tokens.css?v=2" />
+<link rel="stylesheet" href="{prefix}css/base.css?v=2" />
+<link rel="stylesheet" href="{prefix}css/site.css?v=2" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 </head>
 <body>
