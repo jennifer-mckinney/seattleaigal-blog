@@ -747,6 +747,8 @@ section { padding-block: clamp(var(--space-12), 6vw, var(--space-24)); }
 .contact-strip .btn--primary { background: var(--color-text-inverse); color: var(--color-text); }
 [data-theme='dark'] .contact-strip .btn--primary { background: var(--color-primary); color: var(--color-text-inverse); }
 .contact-strip .btn--primary:hover { opacity: 0.85; }
+.contact-strip .btn--ghost { color: var(--color-text-inverse); border-color: var(--color-text-inverse); }
+[data-theme='dark'] .contact-strip .btn--ghost { color: var(--color-text); border-color: var(--color-border); }
 
 .contact-links { display: flex; gap: var(--space-4); flex-wrap: wrap; }
 
