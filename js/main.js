@@ -88,21 +88,50 @@
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  // Category filter tabs (writing index)
+  // Category filter tabs — multi-select (writing index)
+  // activeFilters is a Set of category strings; empty Set = show all (ALL mode).
+  // Scales automatically as new categories are added — no JS changes required.
   var filterBtns = document.querySelectorAll('[data-filter]');
   var cards = document.querySelectorAll('[data-category]');
-  filterBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      filterBtns.forEach(function (b) { b.classList.remove('is-active'); });
-      btn.classList.add('is-active');
-      var val = btn.getAttribute('data-filter');
+  if (filterBtns.length && cards.length) {
+    var activeFilters = new Set();
+
+    function applyFilters() {
+      var allBtn = document.querySelector('[data-filter="all"]');
+      var isAll = activeFilters.size === 0;
+      if (allBtn) allBtn.classList.toggle('is-active', isAll);
       cards.forEach(function (card) {
-        var show = val === 'all' || card.getAttribute('data-category').indexOf(val) !== -1;
+        var cats = card.getAttribute('data-category') || '';
+        var show = isAll || Array.from(activeFilters).some(function (f) {
+          return cats.indexOf(f) !== -1;
+        });
         card.style.display = show ? '' : 'none';
         if (show) card.classList.add('is-visible');
       });
+    }
+
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var val = btn.getAttribute('data-filter');
+        var allBtn = document.querySelector('[data-filter="all"]');
+        if (val === 'all') {
+          activeFilters.clear();
+          filterBtns.forEach(function (b) { b.classList.remove('is-active'); });
+        } else {
+          if (activeFilters.has(val)) {
+            activeFilters.delete(val);
+            btn.classList.remove('is-active');
+          } else {
+            activeFilters.add(val);
+            btn.classList.add('is-active');
+          }
+          if (allBtn) allBtn.classList.remove('is-active');
+          if (activeFilters.size === 0 && allBtn) allBtn.classList.add('is-active');
+        }
+        applyFilters();
+      });
     });
-  });
+  }
 
   // Wrap article-body tables in overflow-scroll container for mobile
   var articleTables = document.querySelectorAll('.article-body table');
