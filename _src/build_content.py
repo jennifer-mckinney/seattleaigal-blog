@@ -85,16 +85,17 @@ ESSAYS = [
         "dek": "Part III of III. The governance gap orbit creates is filled by nothing but operator discretion, and the analysts we'd use to check that discretion are paid by the same people whose discretion is in question.",
         "image": "img/essay-orbital.png",
     },
-    {
-        "slug": "generational-digital-divide",
-        "file": "07-generational-digital-divide.md",
-        "category": "AI Ethics",
-        "secondary": "Compliance",
-        "type": "Research Paper",
-        "date": "2026-08-13",
-        "dek": "A generational fault line is forming around synthetic media: one cohort adapts to a post-authentic internet while another retreats into smaller, verified circles. What that split means for platform trust, and how long the window for intervention stays open.",
-        "image": "img/essay-deepfakes.png",
-    },
+    # HIDDEN: essay 07 pulled from listings for further work — restore by uncommenting
+    # {
+    #     "slug": "generational-digital-divide",
+    #     "file": "07-generational-digital-divide.md",
+    #     "category": "AI Ethics",
+    #     "secondary": "Compliance",
+    #     "type": "Research Paper",
+    #     "date": "2026-08-13",
+    #     "dek": "A generational fault line is forming around synthetic media: one cohort adapts to a post-authentic internet while another retreats into smaller, verified circles. What that split means for platform trust, and how long the window for intervention stays open.",
+    #     "image": "img/essay-deepfakes.png",
+    # },
 ]
 
 CAT_CLASS = {
