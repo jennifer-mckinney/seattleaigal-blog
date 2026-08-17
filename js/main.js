@@ -1,3 +1,4 @@
+// v2
 (function () {
   // Theme toggle — persisted across pages via a `?theme=` URL parameter rather than
   // browser storage APIs (unavailable in sandboxed preview iframes).
