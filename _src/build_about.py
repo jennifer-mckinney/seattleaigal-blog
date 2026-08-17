@@ -43,6 +43,7 @@ page += """
       <h2>Recruiters, clients, and collaborators are all welcome to reach out.</h2>
       <div class="contact-links">
         <a class="btn btn--primary" href="mailto:jennifer.mckinney@croiai.com">jennifer.mckinney@croiai.com</a>
+        <a class="btn btn--ghost" href="https://seattleaigal.blog" target="_blank" rel="noopener">seattleaigal.blog</a>
         <a class="btn btn--ghost" href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
